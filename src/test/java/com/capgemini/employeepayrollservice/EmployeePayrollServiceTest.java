@@ -13,9 +13,20 @@ public class EmployeePayrollServiceTest {
 				new EmployeePayrollData(1, "Abhijeet Kumar Giri, 50000.0),
 				new EmployeePayrollData(2, "Amit Kumar", 50000.0),
 				new EmployeePayrollData(3, "Rapeti Ganesh", 50000.0) };
+
 		EmployeePayrollServiceMain payrollServiceObject = new EmployeePayrollServiceMain(Arrays.asList(arrayOfEmployees));
 		payrollServiceObject.writeEmployeeDdate(IOService.FILE_IO);
+		payrollServiceObject.printEmployeePayrollData();
 		Assert.assertEquals(3, payrollServiceObject.countEnteries(IOService.FILE_IO));
 	}
 
+	
+	@Test
+	public void given3EmployeesWhenReadFromFileShouldMatchNumberOfEmployeeEntries() {
+
+		EmployeePayrollServiceMain payrollServiceObject = new EmployeePayrollServiceMain();
+		payrollServiceObject.readEmployeeData(IOService.FILE_IO);
+		int countOfEntriesRead = payrollServiceObject.sizeOfEmployeeList();
+		Assert.assertEquals(3, countOfEntriesRead);
+	}
 }

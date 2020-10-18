@@ -18,6 +18,7 @@ public class EmployeePayrollData {
 	public int getEmployeeId() {
 		return employeeId;
 	}
+	
 
 	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;

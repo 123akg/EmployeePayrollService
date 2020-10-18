@@ -22,16 +22,24 @@ public class EmployeePayrollServiceMain {
 		this.employeeList = employeeList;
 	}
 
-	public void readEmployeeData() {
-		System.out.println("Enter employee id:");
-		int employeeId = SC.nextInt();
-		System.out.println("Enter employee name:");
-		SC.nextLine();
-		String employeeName = SC.nextLine();
-		System.out.println("Enter employee salary:");
-		double employeeSalary = SC.nextDouble();
-		EmployeePayrollData newEmployee = new EmployeePayrollData(employeeId, employeeName, employeeSalary);
-		employeeList.add(newEmployee);
+	public int sizeOfEmployeeList() {
+		return this.employeeList.size();
+	}
+
+	public void readEmployeeData(IOService ioType) {
+		if (ioType.equals(IOService.CONSOLE_IO)) {
+			System.out.println("Enter employee id:");
+			int employeeId = SC.nextInt();
+			System.out.println("Enter employee name:");
+			SC.nextLine();
+			String employeeName = SC.nextLine();
+			System.out.println("Enter employee salary:");
+			double employeeSalary = SC.nextDouble();
+			EmployeePayrollData newEmployee = new EmployeePayrollData(employeeId, employeeName, employeeSalary);
+			employeeList.add(newEmployee);
+		} else if (ioType.equals(IOService.FILE_IO)) {
+			this.employeeList = new EmployeePayrollFileIOService().readData();
+		}
 	}
 
 	public void writeEmployeeDdate(IOService ioType) {
@@ -47,6 +55,10 @@ public class EmployeePayrollServiceMain {
 		if (ioType.equals(IOService.FILE_IO))
 			return new EmployeePayrollFileIOService().countEntries();
 		return 0;
+	}
+
+	public void printEmployeePayrollData() {
+		new EmployeePayrollFileIOService().printEmployeePayrolls();
 	}
 
 }
