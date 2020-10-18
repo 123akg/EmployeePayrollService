@@ -49,4 +49,9 @@ public class EmployeePayrollServiceMain {
 		return 0;
 	}
 
+	public void printEmployeePayrollData() {
+		new EmployeePayrollFileIOService().printEmployeePayrolls();
+	}
+
+
 }
