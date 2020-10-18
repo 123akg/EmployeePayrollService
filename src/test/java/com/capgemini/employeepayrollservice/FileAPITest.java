@@ -9,29 +9,28 @@ import java.nio.file.Paths;
 import java.util.stream.IntStream;
 
 import org.junit.Test;
+import org.junit.Ignore;
 
+import com.capgemini.employeepayrollservice.JavaWatcherService;
+
+@SuppressWarnings("unused")
 public class FileAPITest {
-	
 	private static final String HOME = System.getProperty("user.home");
 	private static String PLAY_WITH_NIO = "TempPlayGround";
-
+    @Ignore
 	@Test
 	public void givenPathWhenCheckedThenConfirm() throws IOException {
-		
 		// Check File Exists
-		
 		Path homePath = Paths.get(HOME);
 		assertTrue(Files.exists(homePath));
 
 		// Delete File and Check File Not Exist
-		
 		Path playPath = Paths.get(PLAY_WITH_NIO);
 		if (Files.exists(playPath))
 			Files.delete(playPath);
 		assertTrue(Files.notExists(playPath));
 
 		// Create Directory
-		
 		Files.createDirectory(playPath);
 		assertTrue(Files.exists(playPath));
 
@@ -54,4 +53,11 @@ public class FileAPITest {
 
 	}
 
+	@Test
+	@Ignore
+	public void givenADirectoryWhenWatchedListsAllTheActivities() throws IOException {
+		Path dir = Paths.get(HOME + "\\" + PLAY_WITH_NIO);
+		Files.list(dir).filter(Files::isRegularFile).forEach(System.out::println);
+		new JavaWatcherService(dir).processEvents();
+	}
 }
