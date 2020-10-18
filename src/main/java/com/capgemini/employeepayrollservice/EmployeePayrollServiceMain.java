@@ -19,12 +19,12 @@ public class EmployeePayrollServiceMain {
 	}
 
 	public void readEmployeeData() {
-		System.out.println("Enter Employee Id:");
+		System.out.println("Enter Employee Id: ");
 		int employeeId = SC.nextInt();
-		System.out.println("Enter Employee Name:");
+		System.out.println("Enter Employee Name: ");
 		SC.nextLine();
 		String employeeName = SC.nextLine();
-		System.out.println("Enter Employee Salary:");
+		System.out.println("Enter Employee Salary: ");
 		double employeeSalary = SC.nextDouble();
 		EmployeePayrollData newEmployee = new EmployeePayrollData(employeeId, employeeName, employeeSalary);
 		employeeList.add(newEmployee);
